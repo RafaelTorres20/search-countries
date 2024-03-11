@@ -53,18 +53,18 @@ const Switch = styled.div`
   height: 100%;
 `;
 
-const SwitchButton = styled.div<{ selected: boolean; left?: boolean }>`
+const SwitchButton = styled.div<{ $selected: boolean; $leftButton: number }>`
   width: 50%;
   height: 70%;
-  background-color: ${({ selected }) => {
-    console.log(selected);
-    return selected ? '#2d3436' : 'white';
+  background-color: ${({ $selected }) => {
+    return $selected ? '#2d3436' : 'white';
   }};
-  color: ${({ selected }) => (selected ? 'white' : '#2d3436')};
-  border-top-left-radius: ${({ left }) => (left ? '10px' : '0px')};
-  border-top-right-radius: ${({ left }) => (left ? '0px' : '10px')};
-  border-bottom-left-radius: ${({ left }) => (left ? '10px' : '0px')};
-  border-bottom-right-radius: ${({ left }) => (left ? '0px' : '10px')};
+  color: ${({ $selected }) => ($selected ? 'white' : '#2d3436')};
+  border-top-left-radius: ${({ $leftButton }) => ($leftButton === 1 ? '10px' : '0px')};
+  border-top-right-radius: ${({ $leftButton }) => ($leftButton === 1 ? '0px' : '10px')};
+  border-bottom-left-radius: ${({ $leftButton }) => ($leftButton === 1 ? '10px' : '0px')};
+  border-bottom-right-radius: ${({ $leftButton }) =>
+    $leftButton === 1 ? '0px' : '10px'};
   cursor: pointer;
   display: flex;
   justify-content: center;

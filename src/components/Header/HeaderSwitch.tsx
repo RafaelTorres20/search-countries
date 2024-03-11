@@ -1,30 +1,24 @@
-import { useState } from 'react';
 import { Styles } from './styles';
+import { FormatListBulleted, Public } from '@mui/icons-material';
+import { useSwitch } from '../../hooks/useSwitch';
 
 export const HeaderSwitch = () => {
-  const [selected, setSelected] = useState(false);
+  const { toggleSwitch, isSwitchOn } = useSwitch();
   return (
     <Styles.Switch>
       <Styles.SwitchButton
-        onClick={() => {
-          setSelected((prevState) => {
-            return !prevState;
-          });
-        }}
-        selected={selected}
-        left
+        onClick={() => toggleSwitch(true)}
+        $selected={isSwitchOn}
+        $leftButton={1}
       >
-        Light
+        <FormatListBulleted />
       </Styles.SwitchButton>
       <Styles.SwitchButton
-        selected={!selected}
-        onClick={() => {
-          setSelected((prevState) => {
-            return !prevState;
-          });
-        }}
+        $leftButton={2}
+        $selected={!isSwitchOn}
+        onClick={() => toggleSwitch(false)}
       >
-        Dark
+        <Public />
       </Styles.SwitchButton>
     </Styles.Switch>
   );
