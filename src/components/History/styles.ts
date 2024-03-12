@@ -1,8 +1,15 @@
-import styled from 'styled-components';
-
-const Root = styled.div`
+import styled from 'styled-components';const Root = styled.div`
+  @media screen and (max-width: 700px) {
+    bottom: calc(50% - 100px);
+    left: 5vw;
+    height: 30%;
+    width: 90vw;
+    position: absolute;
+    bottom: 20px;
+  }
   position: absolute;
-  bottom: 0;
+  bottom: 20px;
+  left: 20px;
   padding: 20px;
   display: flex;
   justify-content: flex-start;
@@ -12,8 +19,7 @@ const Root = styled.div`
   background-color: rgba(45, 52, 54, 0.5);
   border-radius: 10px;
   height: 300px;
-  margin-bottom: 2%;
-  margin-left: 2%;
+  overflow: hidden;
 `;
 
 const Head = styled.div`
@@ -24,12 +30,23 @@ const Head = styled.div`
 `;
 
 const Title = styled.div`
+  @media screen and (max-width: 600px) {
+    font-size: 20px;
+  }
   color: #fff;
   font-size: 20px;
   color: white;
   display: flex;
   font-weight: bold;
   justify-content: center;
+`;
+
+const HeadButtons = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  overflow: hidden;
+  flex: 1;
 `;
 
 const HeadButton = styled.button`
@@ -40,6 +57,7 @@ const HeadButton = styled.button`
   border: none;
   padding: 10px;
   border-radius: 5px;
+  margin-right: 5px;
   cursor: pointer;
 `;
 
@@ -82,4 +100,4 @@ const List = styled.div`
   }
 `;
 
-export const Styles = { Root, Title, Button, List, Head, HeadButton };
+export const Styles = { Root, Title, Button, List, Head, HeadButton, HeadButtons };

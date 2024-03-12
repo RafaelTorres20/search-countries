@@ -1,5 +1,7 @@
-import { useEffect, useRef } from 'react';import { useSearch } from '../../hooks/useSearch';
+import { useEffect, useRef } from 'react';
+import { useSearch } from '../../hooks/useSearch';
 import { Styles } from './styles';
+import { Search } from '@mui/icons-material';
 
 export const HeaderSearch = () => {
   const ref = useRef<HTMLInputElement>(null);
@@ -20,7 +22,7 @@ export const HeaderSearch = () => {
         placeholder="Search country"
       ></Styles.SearchInput>
       <Styles.SearchButton onClick={() => saveSearch(ref.current?.value as string)}>
-        Search
+        <Search />
       </Styles.SearchButton>
     </Styles.Search>
   );

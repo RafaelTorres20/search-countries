@@ -6,10 +6,11 @@ import { Table } from '../../components/Table';
 import { useSearch } from '../../hooks/useSearch';
 import { toast } from 'react-toastify';
 import { AxiosError } from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 export const Home = () => {
-  const { countries, isLoading, error, setValueSearched, searchs } = useSearch();
+  const { countries, isLoading, error, setValueSearched, searchs, setSearchs } =
+    useSearch();
   const e = error as AxiosError;
   useEffect(() => {
     if (e?.response?.status === 404) {
@@ -23,8 +24,10 @@ export const Home = () => {
     <div>
       <Header.Root>
         <Header.Title>Power2Go</Header.Title>
-        <Header.Search />
-        <Header.Switch />
+        <Header.SearchContainer>
+          <Header.Search />
+          <Header.Switch />
+        </Header.SearchContainer>
       </Header.Root>
       <Table.Root>
         <Table.Header>
@@ -79,7 +82,17 @@ export const Home = () => {
       <History.Root>
         <History.Head>
           <History.Title>History</History.Title>
-          <History.HeadButton onClick={() => {}}>csv</History.HeadButton>
+          <History.HeadButtons>
+            <History.HeadButton
+              onClick={() => {
+                localStorage.clear();
+                setSearchs([]);
+              }}
+            >
+              clear
+            </History.HeadButton>
+            <History.HeadButton onClick={() => {}}>csv</History.HeadButton>
+          </History.HeadButtons>
         </History.Head>
         <History.List>
           {searchs?.map((search) => {

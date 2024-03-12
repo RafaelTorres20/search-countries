@@ -1,6 +1,6 @@
-import { HistoryButton } from './HistoryButton';
-import { HistoryHead } from './HistoryHead';
+import { HistoryButton } from './HistoryButton';import { HistoryHead } from './HistoryHead';
 import { HistoryHeadButton } from './HistoryHeadButton';
+import { HistoryHeadButtons } from './HistoryHeadButtons';
 import { HistoryList } from './HistoryList';
 import { HistoryRoot } from './HistoryRoot';
 import { HistoryTitle } from './HistoryTitle';
@@ -12,4 +12,5 @@ export const History = {
   List: HistoryList,
   Head: HistoryHead,
   HeadButton: HistoryHeadButton,
+  HeadButtons: HistoryHeadButtons,
 };

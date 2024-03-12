@@ -1,22 +1,28 @@
-import styled from 'styled-components';
-const Root = styled.div`
+import styled from 'styled-components';const Root = styled.div`
+  left: 20vw;
   position: absolute;
-  bottom: calc(50% - 350px);
-  left: calc(50% - 32%);
+  bottom: calc(50% - 300px);
   height: 600px;
-  width: 60%;
+  width: 60vw;
   padding: 20px;
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
   background-color: rgba(45, 52, 54, 0.5);
   border-radius: 10px;
-  margin-bottom: 2%;
-  margin-left: 2%;
   z-index: 10;
+  @media screen and (max-width: 700px) {
+    bottom: calc(50% - 100px);
+    left: 5%;
+    height: 40%;
+    width: 90%;
+  }
 `;
 
 const Header = styled.div`
+  @media screen and (max-width: 700px) {
+    font-size: 10px;
+  }
   background-color: #2d3436;
   height: 50px;
   margin-right: 10px;
@@ -29,6 +35,9 @@ const Header = styled.div`
 `;
 
 const Columns = styled.div`
+  @media screen and (max-width: 700px) {
+    font-size: 9px;
+  }
   color: white;
   display: flex;
   flex: 1;
@@ -68,6 +77,10 @@ const List = styled.div`
 `;
 
 const Line = styled.div`
+  @media screen and (max-width: 700px) {
+    padding-bottom: 0px;
+    margin-bottom: 10px;
+  }
   display: flex;
   margin-right: 10px;
   width: calc(100% - 10px);

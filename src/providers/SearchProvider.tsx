@@ -1,4 +1,5 @@
-import { ReactNode, useState } from 'react';import { SearchContext } from '../contexts/searchContext';
+import { ReactNode, useState } from 'react';
+import { SearchContext } from '../contexts/searchContext';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { Country } from '../models/country';
@@ -62,6 +63,7 @@ export const SearchProvider = ({ children }: { children: ReactNode }) => {
         countries,
         error,
         saveSearch,
+        setSearchs,
         searchs,
       }}
     >

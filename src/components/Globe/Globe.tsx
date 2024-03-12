@@ -1,14 +1,18 @@
-import React, { useEffect } from 'react';import Globe, { GlobeMethods } from 'react-globe.gl';
+import React, { useEffect } from 'react';
+import Globe, { GlobeMethods } from 'react-globe.gl';
 import globe from '../../assets/globe.jpg';
 import background from '../../assets/background.png';
 import { useGlobe } from './useGlobe';
 
 export const Globes = () => {
-  const { globeEl, setLoading, globeWidth, setGlobeWidth } = useGlobe();
+  const { globeEl, setLoading, globeWidth, setGlobeWidth, globeHeight, setGlobeHeight } =
+    useGlobe();
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
+      const height = window.innerHeight;
       setGlobeWidth(width);
+      setGlobeHeight(height);
     };
 
     window.addEventListener('resize', handleResize);
@@ -24,6 +28,7 @@ export const Globes = () => {
         setLoading(false);
       }}
       width={globeWidth}
+      height={globeHeight}
       ref={globeEl as React.MutableRefObject<GlobeMethods | undefined>}
       showAtmosphere={true}
       atmosphereColor="white"

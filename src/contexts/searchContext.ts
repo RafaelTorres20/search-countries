@@ -4,6 +4,7 @@ type SearchContextType = {
   valueSearched: string;
   setValueSearched: (value: string) => void;
   saveSearch: (value: string) => void;
+  setSearchs: (value: any[]) => void;
   searchs: any[];
   countries: Country[];
   isLoading: boolean;

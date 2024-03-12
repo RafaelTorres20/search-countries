@@ -1,5 +1,4 @@
-import { ReactNode } from 'react';
-import { Styles } from './styles';
+import { ReactNode } from 'react';import { Styles } from './styles';
 
 export const HistoryHeadButton = ({
   children,

@@ -1,6 +1,12 @@
 import styled from 'styled-components';
-
 const Root = styled.div`
+  @media screen and (max-width: 700px) {
+    justify-content: space-around;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  flex-direction: row;
   position: absolute;
   top: 0;
   padding: 20px;
@@ -12,6 +18,12 @@ const Root = styled.div`
 `;
 
 const Title = styled.div`
+  @media screen and (max-width: 600px) {
+    margin-bottom: 10px;
+    margin-top: 20px;
+    font-size: 20px;
+  }
+
   color: white;
   display: flex;
   font-size: 30px;
@@ -22,29 +34,49 @@ const Title = styled.div`
   height: 100%;
 `;
 
+const SearchContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+`;
+
 const Search = styled.div`
+  @media screen and (max-width: 700px) {
+    width: 90%;
+    height: 40px;
+  }
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
   width: 50%;
-  height: 100%;
+  height: 50px;
 `;
 
 const SearchButton = styled.button`
-  width: 100px;
+  @media screen and (max-width: 700px) {
+    font-size: 15px;
+  }
+  width: 50px;
   height: 100%;
-  background-color: #2d3436;
+  background-color: white;
   border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-top-right-radius: 100px;
   border-bottom-right-radius: 100px;
-  color: white;
+  color: #2d3436;
   font-size: 20px;
   font-weight: bold;
   cursor: pointer;
 `;
 
 const SearchInput = styled.input`
+  @media screen and (max-width: 700px) {
+    font-size: 15px;
+  }
   width: 100%;
   height: 100%;
   padding: 10px;
@@ -59,6 +91,10 @@ const SearchInput = styled.input`
 `;
 
 const Switch = styled.div`
+  @media screen and (max-width: 700px) {
+    width: 100px;
+    height: 60px;
+  }
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -100,4 +136,5 @@ export const Styles = {
   SearchInput,
   SwitchButton,
   SearchButton,
+  SearchContainer,
 };
