@@ -23,9 +23,25 @@ const Title = styled.div`
 `;
 
 const Search = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: white;
-  width: 60%;
+  width: 50%;
   height: 100%;
+`;
+
+const SearchButton = styled.button`
+  width: 100px;
+  height: 100%;
+  background-color: #2d3436;
+  border: none;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
 `;
 
 const SearchInput = styled.input`
@@ -33,7 +49,8 @@ const SearchInput = styled.input`
   height: 100%;
   padding: 10px;
   border: none;
-  border-radius: 100px;
+  border-top-left-radius: 100px;
+  border-bottom-left-radius: 100px;
   background-color: #2d3436;
   padding-left: 40px;
   color: white;
@@ -75,4 +92,12 @@ const SwitchButton = styled.div<{ $selected: boolean; $leftButton: number }>`
   font-weight: bold;
 `;
 
-export const Styles = { Root, Title, Search, Switch, SearchInput, SwitchButton };
+export const Styles = {
+  Root,
+  Title,
+  Search,
+  Switch,
+  SearchInput,
+  SwitchButton,
+  SearchButton,
+};
