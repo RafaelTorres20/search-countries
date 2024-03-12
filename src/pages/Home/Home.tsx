@@ -9,8 +9,7 @@ import { AxiosError } from 'axios';
 import { useEffect, useState } from 'react';
 
 export const Home = () => {
-  const { countries, isLoading, error, setValueSearched } = useSearch();
-  const [searchs, setSearchs] = useState<any[]>([]);
+  const { countries, isLoading, error, setValueSearched, searchs } = useSearch();
   const e = error as AxiosError;
   useEffect(() => {
     if (e?.response?.status === 404) {
@@ -20,12 +19,6 @@ export const Home = () => {
       toast.error('Internal server error', { toastId: 'internal' });
     }
   }, [e]);
-  useEffect(() => {
-    const searchs = localStorage.getItem('@search');
-    if (searchs) {
-      setSearchs(JSON.parse(searchs));
-    }
-  }, []);
   return (
     <div>
       <Header.Root>
@@ -86,7 +79,7 @@ export const Home = () => {
       <History.Root>
         <History.Head>
           <History.Title>History</History.Title>
-          <History.HeadButton onClick={() => {}}>Export to csv</History.HeadButton>
+          <History.HeadButton onClick={() => {}}>csv</History.HeadButton>
         </History.Head>
         <History.List>
           {searchs?.map((search) => {

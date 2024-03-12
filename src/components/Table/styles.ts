@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-
 const Root = styled.div`
   position: absolute;
   bottom: calc(50% - 350px);
@@ -75,6 +74,7 @@ const Line = styled.div`
   border-bottom: 2px solid white;
   padding-bottom: 10px;
   margin-bottom: 30px;
+  cursor: pointer;
 `;
 
 const LineImage = styled.img<{ $src: string }>`

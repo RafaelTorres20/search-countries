@@ -1,5 +1,4 @@
-import { ReactNode, useState } from 'react';
-import { SearchContext } from '../contexts/searchContext';
+import { ReactNode, useState } from 'react';import { SearchContext } from '../contexts/searchContext';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { Country } from '../models/country';
@@ -7,6 +6,11 @@ import { Country } from '../models/country';
 export const SearchProvider = ({ children }: { children: ReactNode }) => {
   let countries: Country[] = [];
   const [valueSearched, setValue] = useState<string>('');
+  const [searchs, setSearchs] = useState<any[]>(
+    localStorage.getItem('@search')
+      ? JSON.parse(localStorage.getItem('@search') as string)
+      : []
+  );
   const setValueSearched = (value: string) => {
     setValue(value);
   };
@@ -26,9 +30,40 @@ export const SearchProvider = ({ children }: { children: ReactNode }) => {
     countries = [];
   }
   countries = data?.data as Country[];
+
+  const saveSearch = (value: string) => {
+    if (value === '') return;
+    setValueSearched(value as string);
+    const search = {
+      value: value,
+      date: new Date().toISOString(),
+      request: `https://restcountries.com/v3.1/name/${value}`,
+    };
+
+    const searchs = localStorage.getItem('@search');
+    if (searchs === null) {
+      localStorage.setItem('@search', JSON.stringify([search]));
+      setSearchs([search]);
+      return;
+    }
+    if (searchs) {
+      const s = JSON.parse(searchs);
+      localStorage.setItem('@search', JSON.stringify([search, ...s]));
+      setSearchs([search, ...s]);
+      return;
+    }
+  };
   return (
     <SearchContext.Provider
-      value={{ valueSearched, setValueSearched, isLoading, countries, error }}
+      value={{
+        valueSearched,
+        setValueSearched,
+        isLoading,
+        countries,
+        error,
+        saveSearch,
+        searchs,
+      }}
     >
       {children}
     </SearchContext.Provider>

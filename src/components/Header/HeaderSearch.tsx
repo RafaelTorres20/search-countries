@@ -1,13 +1,14 @@
-import { useEffect, useRef } from 'react';
-import { useSearch } from '../../hooks/useSearch';
+import { useEffect, useRef } from 'react';import { useSearch } from '../../hooks/useSearch';
 import { Styles } from './styles';
 
 export const HeaderSearch = () => {
   const ref = useRef<HTMLInputElement>(null);
-  const { setValueSearched, valueSearched } = useSearch();
+  const { setValueSearched, valueSearched, saveSearch } = useSearch();
+
   useEffect(() => {
     ref.current?.focus();
   }, []);
+
   return (
     <Styles.Search>
       <Styles.SearchInput
@@ -18,26 +19,7 @@ export const HeaderSearch = () => {
         defaultValue={valueSearched}
         placeholder="Search country"
       ></Styles.SearchInput>
-      <Styles.SearchButton
-        onClick={() => {
-          setValueSearched(ref.current?.value as string);
-          const search = {
-            value: ref.current?.value as string,
-            date: new Date().toISOString(),
-          };
-
-          const searchs = localStorage.getItem('@search');
-          if (searchs === null) {
-            localStorage.setItem('@search', JSON.stringify([search]));
-            return;
-          }
-          if (searchs) {
-            const s = JSON.parse(searchs);
-            localStorage.setItem('@search', JSON.stringify([...s, search]));
-            return;
-          }
-        }}
-      >
+      <Styles.SearchButton onClick={() => saveSearch(ref.current?.value as string)}>
         Search
       </Styles.SearchButton>
     </Styles.Search>

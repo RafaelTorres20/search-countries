@@ -1,11 +1,11 @@
-import { useState, useRef, useEffect } from 'react';
-import { GlobeMethods } from 'react-globe.gl';
+import { useState, useRef, useEffect } from 'react';import { GlobeMethods } from 'react-globe.gl';
 import { Vector3Like } from 'three';
 import { OrbitControls } from 'three/examples/jsm/Addons.js';
 
 export const useGlobe = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [focused, setFocused] = useState<boolean>(false);
+  const [globeWidth, setGlobeWidth] = useState<number>(window.innerWidth);
   const globeEl = useRef<GlobeMethods>({} as GlobeMethods);
   const [controls, setControls] = useState<OrbitControls>({} as OrbitControls);
 
@@ -61,5 +61,5 @@ export const useGlobe = () => {
     setFocused(true);
   }
 
-  return { animateCameraToTarget, globeEl, setLoading };
+  return { animateCameraToTarget, globeEl, setLoading, globeWidth, setGlobeWidth };
 };
