@@ -54,7 +54,3 @@ The following libraries and technologies are used in this project:
 ## Author
 
 - [Rafael Torres - linkedin](https://www.linkedin.com/in/rafaeltorres20/)
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
