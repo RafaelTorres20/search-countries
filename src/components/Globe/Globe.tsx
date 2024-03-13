@@ -1,31 +1,21 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Globe, { GlobeMethods } from 'react-globe.gl';
 import globe from '../../assets/globe.jpg';
 import background from '../../assets/background.png';
 import { useGlobe } from './useGlobe';
+import { useSearch } from '../../hooks/useSearch';
 
 export const Globes = () => {
-  const { globeEl, setLoading, globeWidth, setGlobeWidth, globeHeight, setGlobeHeight } =
-    useGlobe();
-  useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
-      setGlobeWidth(width);
-      setGlobeHeight(height);
-    };
+  const { globeEl, setLoading, globeWidth, globeHeight } = useGlobe();
 
-    window.addEventListener('resize', handleResize);
-
-    // Remover o event listener quando o componente desmontar
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+  const { setCountry } = useSearch();
   return (
     <Globe
       onGlobeReady={() => {
         setLoading(false);
+      }}
+      onGlobeClick={() => {
+        setCountry(undefined);
       }}
       width={globeWidth}
       height={globeHeight}

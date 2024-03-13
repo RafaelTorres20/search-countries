@@ -1,4 +1,5 @@
-import { createContext } from 'react';import { Country } from '../models/country';
+import { createContext } from 'react';
+import { Country } from '../models/country';
 
 type SearchContextType = {
   valueSearched: string;
@@ -9,6 +10,8 @@ type SearchContextType = {
   countries: Country[];
   isLoading: boolean;
   error: Error | null;
+  country: Country | undefined;
+  setCountry: (value: Country | undefined) => void;
 };
 
 export const SearchContext = createContext<SearchContextType>({} as SearchContextType);

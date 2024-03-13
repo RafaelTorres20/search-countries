@@ -7,6 +7,7 @@ import { Country } from '../models/country';
 export const SearchProvider = ({ children }: { children: ReactNode }) => {
   let countries: Country[] = [];
   const [valueSearched, setValue] = useState<string>('');
+  const [country, setCountry] = useState<Country | undefined>(undefined);
   const [searchs, setSearchs] = useState<any[]>(
     localStorage.getItem('@search')
       ? JSON.parse(localStorage.getItem('@search') as string)
@@ -15,7 +16,6 @@ export const SearchProvider = ({ children }: { children: ReactNode }) => {
   const setValueSearched = (value: string) => {
     setValue(value);
   };
-
   const { data, isLoading, error } = useQuery({
     queryKey: ['countries', valueSearched],
     queryFn: () =>
@@ -30,6 +30,7 @@ export const SearchProvider = ({ children }: { children: ReactNode }) => {
   if (error) {
     countries = [];
   }
+
   countries = data?.data as Country[];
 
   const saveSearch = (value: string) => {
@@ -58,13 +59,15 @@ export const SearchProvider = ({ children }: { children: ReactNode }) => {
     <SearchContext.Provider
       value={{
         valueSearched,
-        setValueSearched,
         isLoading,
         countries,
         error,
+        searchs,
+        country,
         saveSearch,
         setSearchs,
-        searchs,
+        setCountry,
+        setValueSearched,
       }}
     >
       {children}

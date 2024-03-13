@@ -1,4 +1,5 @@
-import styled from 'styled-components';const Root = styled.div`
+import styled from 'styled-components';
+const Root = styled.div`
   @media screen and (max-width: 700px) {
     bottom: calc(50% - 100px);
     left: 5vw;
@@ -62,12 +63,18 @@ const HeadButton = styled.button`
 `;
 
 const Button = styled.div`
+  overflow: hidden;
   background-color: white;
   width: 90%;
+  height: auto;
+  font-size: 12px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px;
   font-weight: bold;
   color: #2d3436;
   border: none;
-  padding: 10px;
   border-radius: 5px;
   margin-bottom: 10px;
   cursor: pointer;

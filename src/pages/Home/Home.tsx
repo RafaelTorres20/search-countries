@@ -1,5 +1,4 @@
-import { CircularProgress } from '@mui/material';
-import { Globes } from '../../components/Globe/Globe';
+import { CircularProgress } from '@mui/material';import { Globes } from '../../components/Globe/Globe';
 import { Header } from '../../components/Header';
 import { History } from '../../components/History';
 import { Table } from '../../components/Table';
@@ -7,12 +6,25 @@ import { useSearch } from '../../hooks/useSearch';
 import { toast } from 'react-toastify';
 import { AxiosError } from 'axios';
 import { useEffect } from 'react';
+import { Flag } from '../../components/Flag';
+import { useSwitch } from '../../hooks/useSwitch';
+import { CountryFlag } from '../../components/Flag/Flag';
 
 export const Home = () => {
-  const { countries, isLoading, error, setValueSearched, searchs, setSearchs } =
-    useSearch();
+  const {
+    countries,
+    isLoading,
+    country,
+    error,
+    setValueSearched,
+    searchs,
+    setSearchs,
+    setCountry,
+  } = useSearch();
+  const { toggleSwitch } = useSwitch();
   const e = error as AxiosError;
   useEffect(() => {
+    // Tratamento de erro
     if (e?.response?.status === 404) {
       toast.warn('No country found with this name', { toastId: 'error' });
     }
@@ -21,7 +33,8 @@ export const Home = () => {
     }
   }, [e]);
   return (
-    <div>
+    <div style={{ overflowX: 'hidden', overflowY: 'hidden' }}>
+      <CountryFlag country={country} />
       <Header.Root>
         <Header.Title>Power2Go</Header.Title>
         <Header.SearchContainer>
@@ -53,7 +66,14 @@ export const Home = () => {
           )}
           {countries?.map((country) => {
             return (
-              <Table.Line key={country.name.common}>
+              <Table.Line
+                onClick={() => {
+                  // Altera o país selecionado e a visualização da lista
+                  setCountry(country);
+                  toggleSwitch(false);
+                }}
+                key={country.name.common}
+              >
                 <Table.Columns>
                   <Table.LineImage src={country.flags.png} />
                 </Table.Columns>
@@ -85,6 +105,7 @@ export const Home = () => {
           <History.HeadButtons>
             <History.HeadButton
               onClick={() => {
+                // Limpa o localStorage e a lista de histórico
                 localStorage.clear();
                 setSearchs([]);
               }}
@@ -100,7 +121,10 @@ export const Home = () => {
               <History.Button
                 key={search.date}
                 onClick={() => {
+                  // Altera a lista na tabela, remove a flag e coloca a lista de países
                   setValueSearched(search.value);
+                  setCountry(undefined);
+                  toggleSwitch(true);
                 }}
               >
                 {search?.value}

@@ -1,19 +1,28 @@
-import styled from 'styled-components';const Root = styled.div`
-  left: 20vw;
+import styled from 'styled-components';const Root = styled.div<{ $switch: boolean }>`
+  left: ${({ $switch }) => {
+    if ($switch) return '20vw';
+    return '-100vw';
+  }};
+
   position: absolute;
   bottom: calc(50% - 300px);
   height: 600px;
   width: 60vw;
   padding: 20px;
   display: flex;
+  visibility: ${({ $switch }) => ($switch ? 'visible' : 'hidden')};
   justify-content: flex-start;
   flex-direction: column;
   background-color: rgba(45, 52, 54, 0.5);
   border-radius: 10px;
+  transition: all 0.5s ease-in-out;
   z-index: 10;
   @media screen and (max-width: 700px) {
     bottom: calc(50% - 100px);
-    left: 5%;
+    left: ${({ $switch }) => {
+      if ($switch) return '5%';
+      return '-100vw';
+    }};
     height: 40%;
     width: 90%;
   }
