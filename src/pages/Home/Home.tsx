@@ -9,6 +9,7 @@ import { AxiosError } from 'axios';
 import { useEffect } from 'react';
 import { useSwitch } from '../../hooks/useSwitch';
 import { CountryFlag } from '../../components/Flag/Flag';
+import Papa from 'papaparse';
 
 export const Home = () => {
   const {
@@ -32,6 +33,22 @@ export const Home = () => {
       toast.error('Internal server error', { toastId: 'internal' });
     }
   }, [e]);
+
+  const exportToCSV = () => {
+    const history = localStorage.getItem('@search');
+    if (history === null) {
+      toast.warn('No history to export', { toastId: 'error' });
+      return;
+    }
+    const searchData = JSON.parse(history);
+    const csv = Papa.unparse(searchData);
+    const csvData = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const csvURL = window.URL.createObjectURL(csvData);
+    const a = document.createElement('a');
+    a.href = csvURL;
+    a.setAttribute('download', 'history.csv');
+    a.click();
+  };
   return (
     <div style={{ overflowX: 'hidden', overflowY: 'hidden' }}>
       <CountryFlag country={country} />
@@ -112,7 +129,13 @@ export const Home = () => {
             >
               clear
             </History.HeadButton>
-            <History.HeadButton onClick={() => {}}>csv</History.HeadButton>
+            <History.HeadButton
+              onClick={() => {
+                exportToCSV();
+              }}
+            >
+              csv
+            </History.HeadButton>
           </History.HeadButtons>
         </History.Head>
         <History.List>
