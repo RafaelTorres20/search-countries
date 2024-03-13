@@ -1,4 +1,5 @@
-import { CircularProgress } from '@mui/material';import { Globes } from '../../components/Globe/Globe';
+import { CircularProgress } from '@mui/material';
+import { Globes } from '../../components/Globe/Globe';
 import { Header } from '../../components/Header';
 import { History } from '../../components/History';
 import { Table } from '../../components/Table';
@@ -6,7 +7,6 @@ import { useSearch } from '../../hooks/useSearch';
 import { toast } from 'react-toastify';
 import { AxiosError } from 'axios';
 import { useEffect } from 'react';
-import { Flag } from '../../components/Flag';
 import { useSwitch } from '../../hooks/useSwitch';
 import { CountryFlag } from '../../components/Flag/Flag';
 

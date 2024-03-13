@@ -10,7 +10,7 @@ const Root = styled.div<{ $country: Country | undefined }>`
   width: 25%;
   display: flex;
   visibility: ${({ $country }) => ($country ? 'visible' : 'hidden')};
-  background-color: rgba(45, 52, 54, 0.5);
+  background-color: rgba(45, 52, 54, 0.8);
   box-sizing: border-box;
   border: 2px solid #ecf0f1;
   z-index: 11;
